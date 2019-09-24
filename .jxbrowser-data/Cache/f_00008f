@@ -1,0 +1,194 @@
+[
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrH-7PZ0G5I0E8&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrH-7PZ0G5I0E8",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrH-7PZ0G5I0E8?extname=.h",
+    "linkType": "local",
+    "name": "Board.h",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "Board.h",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrH_kiaGiuHv8A&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrH_kiaGiuHv8A",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrH_kiaGiuHv8A?extname=.c",
+    "linkType": "local",
+    "name": "EK_TM4C123GXL.c",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "EK_TM4C123GXL.c",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrHx-wq_4wmT9s&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrHx-wq_4wmT9s",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrHx-wq_4wmT9s?extname=.cmd",
+    "linkType": "local",
+    "name": "EK_TM4C123GXL.cmd",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "EK_TM4C123GXL.cmd",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrH-D8YPLCbGsg&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrH-D8YPLCbGsg",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrH-D8YPLCbGsg?extname=.h",
+    "linkType": "local",
+    "name": "EK_TM4C123GXL.h",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "EK_TM4C123GXL.h",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrHqG_md4gJwOk&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrHqG_md4gJwOk",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrHqG_md4gJwOk?extname=.c",
+    "linkType": "local",
+    "name": "empty.c",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "empty.c",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrHopX2i9SzCJ0&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrHopX2i9SzCJ0",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrHopX2i9SzCJ0?extname=.cfg",
+    "linkType": "local",
+    "name": "empty.cfg",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "empty.cfg",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrHewMEHHtzlRU&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrHewMEHHtzlRU",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrHewMEHHtzlRU?extname=.txt",
+    "linkType": "local",
+    "name": "empty_readme.txt",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "empty_readme.txt",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  },
+  {
+    "downloadLink": "api/bundle?vid=tirtos_tivac__2.16.00.08&download=true",
+    "makeofflineLink": "api/bundles?vids=tirtos_tivac__2.16.00.08",
+    "removeofflineLink": "api/resources?id=SrHGRC0jwtRqHM&path=Software/TI-RTOS for TivaC/Development Tools/EK-TM4C123GXL/Driver Examples/Empty Examples/Empty Project&removeoffline=true",
+    "_id": "SrHGRC0jwtRqHM",
+    "advanced": {
+      "overrideProjectSpecDeviceId": true
+    },
+    "devtools": [
+      "EK-TM4C123GXL"
+    ],
+    "link": "api/linkTo/SrHGRC0jwtRqHM?extname=.defs",
+    "linkType": "local",
+    "name": "makefile.defs",
+    "packageUId": "tirtos_tivac__2.16.00.08",
+    "parentID": "SrHtRAuuqy_EJM",
+    "resourceType": "file",
+    "shortDescription": "An empty TI-RTOS project",
+    "type": "resource",
+    "text": "makefile.defs",
+    "url": "/api/resources?devtool=EK-TM4C123GXL&package=com.ti.SIMPLELINK_CC13X0_SDK__3.20.00.23::com.ti.SIMPLELINK_CC13X2_26X2_SDK__3.20.00.68::com.ti.SIMPLELINK_CC13X2_SDK__2.30.00.45::com.ti.SIMPLELINK_CC26X2_SDK__2.30.00.34::com.ti.SIMPLELINK_CC2640R2_SDK__3.20.00.21::com.ti.SIMPLELINK_CC2652RB_BLE_SDK__3.10.00.15::com.ti.SIMPLELINK_MSP432_SDK__3.20.00.06::com.ti.SIMPLELINK_MSP432E4_SDK__3.20.00.10::com.ti.SIMPLELINK_CC32XX_SDK__3.20.00.06::com.ti.SIMPLELINK_CC2640R2_SDK_BLE_EXAMPLE_PACK__1.50.00.62::com.ti.SIMPLELINK_SDK_BLE_PLUGIN__3.20.00.24::com.ti.SIMPLELINK_MSP432_SDK_WIFI_PLUGIN__2.40.00.22::com.ti.SIMPLELINK_SDK_VOICE_DETECTION_PLUGIN__1.50.00.15::com.ti.SIMPLELINK_SDK_TI_15_4_STACK_PLUGIN__2.20.00.05::com.ti.SIMPLELINK_ZIGBEE_SDK_PLUGIN__2.20.00.06::com.ti.AWS_CC32XX__2.20.00.02::com.ti.AWS_MSP432E4__2.20.00.02::com.ti.WATSON_MSP432E4__1.20.00.04::com.ti.WATSON_CC32XX__1.20.00.04::com.ti.SAIL__1.40.00.00::com.ti.AZURE_CC32XX__3.20.00.02::com.ti.AZURE_MSP432E4__3.20.00.02::com.ti.SIMPLELINK_SDK_NFC_PLUGIN__2.20.00.08::com.ti.mmwave_industrial_toolbox__4.0.0::com.ti.mmwave_automotive_toolbox__2.5.0::c2000ware_software_package__2.00.00.02::digital_power_c2000ware_sdk_software_package__2.00.01.00::motor_control_c2000ware_sdk_software_package__2.00.00.00::powerSUITE_software_package__2.05.01.00::msp430ware__3.80.07.00::energia.core__18.0.0::energia.tool.arm-none-eabi-gcc__6.3.1-20170620::energia.tool.ino2cpp__1.0.6::energia.boards.cc13xx__5.20.0::energia.boards.cc3220emt__5.6.2::energia.boards.msp432r__5.25.0::sitara__1.02.00.00::tm4c__2.1.4.178::tirtos_cc13xx_cc26xx__2.21.00.06::tirtos_tivac__2.16.00.08::xdctools__3.51.02.21::com.ti.SIMPLELINK_BLE_PLUGIN_AZURE_GATEWAY_EXAMPLE_PACK__3.20.00.22&path=Software/TI-RTOS%20for%20TivaC/Development%20Tools/EK-TM4C123GXL/Driver%20Examples/Empty%20Examples/Empty%20Project",
+    "packageOrder": 293,
+    "offline": "true"
+  }
+]
