@@ -16,7 +16,7 @@ BIOS_INC  = -I"/Applications/ti/tirtos_tivac_2_16_01_14/products/bios_6_45_02_31
 
 TARGET_INC = -I"/Applications/ti/tirtos_tivac_2_16_01_14/products/bios_6_45_02_31/packages/"
 
-INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="/Applications/ti/tirtos_tivac_2_16_01_14/products/bios_6_45_02_31/packages/ti/catalog/arm/cortexm4/tiva/ce/" --include_path="/Users/fazalmahmood/ECE_4437_F19/Final_Robot_Project_Fall_19" --include_path="/Users/fazalmahmood/ECE_4437_F19/Final_Robot_Project_Fall_19" --include_path="/Applications/ti/tirtos_tivac_2_16_01_14/products/TivaWare_C_Series-2.1.1.71b" --include_path="/Applications/ti/tirtos_tivac_2_16_01_14/products/bios_6_45_01_29/packages/ti/sysbios/posix" --include_path="/Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include" 
+INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="/Users/fazalmahmood/ECE_4437_F19/Final_Robot_Project_Fall_19" --include_path="/Users/fazalmahmood/ECE_4437_F19/Final_Robot_Project_Fall_19" --include_path="/Applications/ti/tirtos_tivac_2_16_01_14/products/TivaWare_C_Series-2.1.1.71b" --include_path="/Applications/ti/tirtos_tivac_2_16_01_14/products/bios_6_45_02_31/packages/ti/sysbios/posix" --include_path="/Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include" 
 
 CC = /Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/bin/armcl -c $(CCOPTS) -I /Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include
 ASM = /Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/bin/armcl -c $(CCOPTS) -I /Applications/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include

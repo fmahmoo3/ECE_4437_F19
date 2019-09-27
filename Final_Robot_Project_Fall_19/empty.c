@@ -73,11 +73,11 @@ void Configure_UART1() // Connection for the Bluetooth
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);// Enable the UART 1 module
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);// Enable the GPIO B peripheral
 
-    GPIOPinConfigure(GPIO_PB0_U1RX); // Enable UART3 function on GPIO Port B pins 6
-    GPIOPinConfigure(GPIO_PB1_U1TX); // Enable UART3 function on GPIO Port B pins 7
-    GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1); // Configure GPIO Port C to pins 6 and 7 to be used as UART
+    GPIOPinConfigure(GPIO_PB0_U1RX); // Enable UART1 function on GPIO Port B pins 6
+    GPIOPinConfigure(GPIO_PB1_U1TX); // Enable UART1 function on GPIO Port B pins 7
+    GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1); // Configure GPIO Port B to pins 0 and 1 to be used as UART
 
-    // Initialize the UART. Set the baud rate, number of dataa bits, turn off
+    // Initialize the UART. Set the baud rate, number of data bits, turn off
     // parity, number of stop bits, and stick mode. The UART is enabled by the function call
     UARTConfigSetExpClk(UART1_BASE, SysCtlClockGet(), 115200,
             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
@@ -88,7 +88,7 @@ void Configure_UART1() // Connection for the Bluetooth
  *  Setup bluetooth module using PB0 = Tx and PB1 = Rx
  *  Milestone 2
  */
-Void configureBluetooth(UArg arg0, UArg arg1)
+Void configureBluetooth(void)
 {
     //Set CPU Clock to 40MHz. 400MHz PLL/2 = 200 DIV 5 = 40MHz
     SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
@@ -105,7 +105,7 @@ Void configureBluetooth(UArg arg0, UArg arg1)
  *  Toggle the Board_LED0 @ 1Hz.
  *  Milestone 1
  */
-Void heartBeatFxn(UArg arg0, UArg arg1)
+Void heartBeatFxn(void)
 {
     /* Turn on user LED */
     GPIO_write(Board_LED0, Board_LED_ON);
@@ -115,9 +115,6 @@ Void heartBeatFxn(UArg arg0, UArg arg1)
         GPIO_toggle(Board_LED0);
     }
 }
-
-
-
 
 /*
  *  ======== main ========
@@ -135,6 +132,8 @@ int main(void)
     // Board_initWatchdog();
     // Board_initWiFi();
 
+    //Configuration Function Calls
+     configureBluetooth();
 
     /* Start BIOS */
     BIOS_start();
