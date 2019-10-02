@@ -40,17 +40,17 @@
 
 /* TI-RTOS Header files */
 #include <ti/drivers/GPIO.h>
-// #include <ti/drivers/I2C.h>
-// #include <ti/drivers/SDSPI.h>
-// #include <ti/drivers/SPI.h>
+ #include <ti/drivers/I2C.h>
+ #include <ti/drivers/SDSPI.h>
+ #include <ti/drivers/SPI.h>
  #include <ti/drivers/UART.h>
-// #include <ti/drivers/Watchdog.h>
-// #include <ti/drivers/WiFi.h>
+ #include <ti/drivers/Watchdog.h>
+ #include <ti/drivers/WiFi.h>
 
 /* Board Header file */
 #include "Board.h"
 
-/* Used to include "defines" */
+/* Used to include for "defines" */
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_memmap.h"
@@ -59,10 +59,29 @@
 #include "driverlib/uart.h"
 #include "driverlib/pin_map.h"
 
+//global lookup table
+void (*lookUpTable[26][26])(int arg1, int arg2) = {{NULL}};
 
 
+/*
+ * ======= Command Interpreter Functions =======
+ */
 
-
+void toggleRedLED(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+    UARTPutString(UART_BASE, "\tToggling Red LED\n\r");
+    GPIO_toggle(Board_LED2);
+}
+void toggleGreenLED(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+    UARTPutString(UART_BASE, "\tToggling Green LED\n\r");
+    GPIO_toggle(Board_LED1);
+}
+void toggleBlueLED(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+    UARTPutString(UART_BASE, "\tToggling Blue LED\n\r");
+    GPIO_toggle(Board_LED0);
+}
 
 /*
  * ======= Helper Functions =======
@@ -82,13 +101,73 @@ void Configure_UART1() // Connection for the Bluetooth
     UARTConfigSetExpClk(UART1_BASE, SysCtlClockGet(), 115200,
             (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
 }
+/*
+ * Milestone 3: Send string to UART
+ *
+ */
+void UARTPutString(uint32_t UART_BASE, unsigned char *stringToSend)// send string to the command line
+{
+    while(*stringToSend != 0)
+        UARTCharPut(UART_BASE, *stringToSend++);// Waiting to send a char from the UART base port to monitor.
+}
+
+/*
+ * Milestone 3: Get string from UART
+ *
+ */
+void UARTGetString(uint32_t UART_BASE, unsigned char *stringFromUART, unsigned long ulCount)
+{
+    unsigned long charcount = 0;
+    while (charcount <= ulCount)
+    {
+        stringFromUART[charcount] = UARTCharGet(UART_BASE);//Wating for a char from the UART Base port
+        if ((stringFromUART[charcount] == '\r') || (stringFromUART[charcount] == '\n'))// if new line or return, break
+            break;
+        charcount++;
+    }
+    stringFromUART[charcount] = 0;
+}
+/*
+ *  ======= commandInterprtor ========
+ *
+ *  Milestone 3
+ */
+void commandInterpreter(void){
+    uint32_t UART_BASE = UART1_BASE;
+    UARTPutString(UART_BASE, "Beginning the Program...\n\r");
+
+    char inChar1;
+    char inChar2;
+
+    while(1){
+        if(UARTCharsAvail(UART_BASE))
+        {
+            inChar1 = UARTCharGet(UART_BASE);
+
+            while(!UARTCharsAvail(UART_BASE)){
+                //wait
+            }
+
+            inChar2 = UARTCharGet(UART_BASE);
+
+            if(lookUpTable[inChar1-'a'][inChar2-'a'] != NULL){
+                UARTPutString(UART_BASE, "\nYour Command Has Been Received:");
+                lookUpTable[inChar1-'a'][inChar2-'a'](0,0);
+            }
+            else{
+                UARTPutString(UART_BASE, "\nYour Command Was not understood\n\r");
+            }
+
+        }
+    }
+}
 
 /*
  *  ======== configureBluetooth ========
  *  Setup bluetooth module using PB0 = Tx and PB1 = Rx
  *  Milestone 2
  */
-Void configureBluetooth(void)
+void configureBluetooth(void)
 {
     //Set CPU Clock to 40MHz. 400MHz PLL/2 = 200 DIV 5 = 40MHz
     SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
@@ -105,7 +184,7 @@ Void configureBluetooth(void)
  *  Toggle the Board_LED0 @ 1Hz.
  *  Milestone 1
  */
-Void heartBeatFxn(void)
+void heartBeatFxn(void)
 {
     /* Turn on user LED */
     GPIO_write(Board_LED0, Board_LED_ON);
@@ -119,21 +198,27 @@ Void heartBeatFxn(void)
 /*
  *  ======== main ========
  */
+
 int main(void)
 {
     /* Call board init functions */
     Board_initGeneral();
     Board_initGPIO();
-    // Board_initI2C();
-    // Board_initSDSPI();
-    // Board_initSPI();
-     Board_initUART();
-    // Board_initUSB(Board_USBDEVICE);
-    // Board_initWatchdog();
-    // Board_initWiFi();
+    Board_initI2C();
+    Board_initSDSPI();
+    Board_initSPI();
+    Board_initUART();
+    Board_initUSB(Board_USBDEVICE);
+    Board_initWatchdog();
+    Board_initWiFi();
 
     //Configuration Function Calls
-     configureBluetooth();
+    configureBluetooth();
+
+    //Setup Command Interperter 2D Array
+    lookUpTable['t'-'a']['r'-'a'] = toggleRedLED;
+    lookUpTable['t'-'a']['g'-'a'] = toggleGreenLED;
+    lookUpTable['t'-'a']['b'-'a'] = toggleBlueLED;
 
     /* Start BIOS */
     BIOS_start();
