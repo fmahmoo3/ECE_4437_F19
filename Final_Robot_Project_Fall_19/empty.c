@@ -110,7 +110,7 @@ void distanceSensorFrontRead(int arg1, int arg2){
     uint32_t UART_BASE = UART1_BASE;
     uint32_t ui32ADC1Value[1];
 
-    ADCIntClear(ADC1_BASE, 1);
+    ADCIntClear(ADC1_BASE, 2);
     ADCProcessorTrigger(ADC1_BASE, 2);
 
     while(!ADCIntStatus(ADC1_BASE, 2, false)){
