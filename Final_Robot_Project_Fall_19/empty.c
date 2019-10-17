@@ -64,6 +64,10 @@
 #include "driverlib/uart.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/adc.h"
+#include "driverlib/debug.h"
+#include "driverlib/pwm.h"
+#include "inc/hw_gpio.h"
+#include "driverlib/rom.h"
 
 //global variables
 void (*lookUpTable[26][26])(int arg1, int arg2) = {{NULL}};
@@ -127,9 +131,52 @@ void distanceSensorFrontRead(int arg1, int arg2){
 }
 
 /*
+ * Milestone 5: ConfigureMotorRight()
+ */
+
+//variables used to program PWM
+#define PWM_FREQUENCY 55
+volatile uint32_t ui32Load;
+volatile uint32_t ui32PWMClock;
+volatile uint8_t ui8Adjust;
+
+void ConfigureMotorRight(){
+    ui8Adjust = 83;
+    SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ); //setting cpu to run at 40MHz
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_64); //setting PWM module clock, clocked by system clock through a divider, inputing 64 runs at 40Mhz/64 (625kHz)
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1); //enabling pwm1 module
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); //enabling I/O for port A
+
+    GPIOPinTypePWM(GPIO_PORTA_BASE, GPIO_PIN_6); //configuring pin pa6 as pwm output
+    GPIOPinConfigure(GPIO_PA6_M1PWM2);
+
+    ui32PWMClock = SysCtlClockGet() / 64; //setting our PWM clock to a variable
+    ui32Load = (ui32PWMClock / PWM_FREQUENCY) - 1; //the count to be loaded to the load register
+    PWMGenConfigure(PWM1_BASE, PWM_GEN_2, PWM_GEN_MODE_DOWN);//configure module 1 PWM generator 0 as down counter
+    PWMGenPeriodSet(PWM1_BASE, PWM_GEN_2, ui32Load); //setting the count value
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust * ui32Load / 1000); //setting pulse width
+    PWMOutputState(PWM1_BASE, PWM_OUT_2_BIT, true); //enabling module 1 gen 0 as output and enabling it
+    PWMGenEnable(PWM1_BASE, PWM_GEN_2);
+
+    //configure PA5 to control motor direction*******
+    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_5);
+}
+void alternatePWMRightMotor(int arg1, int arg2){
+    ui8Adjust--;
+    if (ui8Adjust < 56){
+        ui8Adjust = 56;
+    }
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 1);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust * ui32Load / 1000);
+}
+
+/*
  * ======= Helper Functions =======
  *
  */
+
 
 /*
  * Milestone 4: Configure_DistanceSensor_Right()
@@ -293,6 +340,7 @@ int main(void)
     configureBluetooth();
     Configure_DistanceSensor_Right();
     Configure_DistanceSensor_Front();
+    ConfigureMotorRight();
 
     //Setup Command Interperter 2D Array
     lookUpTable['t'-'a']['r'-'a'] = toggleRedLED;
@@ -300,6 +348,7 @@ int main(void)
     lookUpTable['t'-'a']['b'-'a'] = toggleBlueLED;
     lookUpTable['d'-'a']['r'-'a'] = distanceSensorRightRead;
     lookUpTable['d'-'a']['f'-'a'] = distanceSensorFrontRead;
+    lookUpTable['g'-'a']['o'-'a'] = alternatePWMRightMotor;
 
     /* Start BIOS */
     BIOS_start();
