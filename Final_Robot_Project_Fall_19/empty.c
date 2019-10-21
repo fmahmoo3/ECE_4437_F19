@@ -160,7 +160,7 @@ void moveBackward(int arg1, int arg2){
     PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
     PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
 
-    UARTPutString(UART_BASE, "\t Moving forward\n\r");
+    UARTPutString(UART_BASE, "\t Moving backwards\n\r");
 }
 
 void stopMoving(int arg1, int arg2){
@@ -203,6 +203,58 @@ void rotateLeft(int arg1, int arg2){
     PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
 
     UARTPutString(UART_BASE, "\t Rotating towards left\n\r");
+}
+
+void decreaseSpeed(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    if (ui8Adjust1 - 10 > 30){
+        ui8Adjust1 -= 10;
+        ui8Adjust2 -= 10;
+
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+        UARTPutString(UART_BASE, "\t Slowing Down\n\r");
+    }
+    else if(ui8Adjust1 != 30){
+        ui8Adjust1 = 30;
+        ui8Adjust2 = 30;
+
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+        UARTPutString(UART_BASE, "\t Slowing Down\n\r");
+    }
+    else{
+        UARTPutString(UART_BASE, "\t Already Stopped\n\r");
+    }
+
+}
+
+void increaseSpeed(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    if (ui8Adjust1 + 10 < 255){
+        ui8Adjust1 += 10;
+        ui8Adjust2 += 10;
+
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+        UARTPutString(UART_BASE, "\t Speeding up \n\r");
+    }
+    else if(ui8Adjust1 != 255){
+        ui8Adjust1 = 255;
+        ui8Adjust2 = 255;
+
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+        UARTPutString(UART_BASE, "\t Speeding up \n\r");
+    }
+    else{
+        UARTPutString(UART_BASE, "\t Top speed \n\r");
+    }
+
 }
 
 /*
@@ -418,7 +470,8 @@ int main(void)
     lookUpTable['s'-'a']['t'-'a'] = stopMoving;//st = stop
     lookUpTable['r'-'a']['r'-'a'] = rotateRight;//rr = rotate right
     lookUpTable['r'-'a']['l'-'a'] = rotateLeft;//rl = rotate left
-
+    lookUpTable['i'-'a']['s'-'a'] = increaseSpeed;//is = increase Speed
+    lookUpTable['d'-'a']['s'-'a'] = decreaseSpeed;//rl = decrease Speed
 
 
     /* Start BIOS */
