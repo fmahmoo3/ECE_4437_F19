@@ -91,6 +91,148 @@ void toggleBlueLED(int arg1, int arg2){
     UARTPutString(UART_BASE, "\tToggling Blue LED\n\r");
     GPIO_toggle(Board_LED0);
 }
+
+/*
+ * Milestone 5: ConfigureMotorRight()
+ */
+
+//variables used to program PWM
+#define PWM_FREQUENCY 55
+volatile uint32_t ui32Load;
+volatile uint32_t ui32PWMClock;
+volatile uint8_t ui8Adjust1;
+volatile uint8_t ui8Adjust2;
+
+void ConfigureMotorRightAndLeft(){
+    ui8Adjust1 = 30; //
+    ui8Adjust2 = 30;
+    SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ); //setting cpu to run at 40MHz
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_64); //setting PWM module clock, clocked by system clock through a divider, inputing 64 runs at 40Mhz/64 (625kHz)
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1); //enabling pwm1 module
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); //enabling I/O for port A
+
+    GPIOPinTypePWM(GPIO_PORTA_BASE, GPIO_PIN_6); //configuring pin pa6 as pwm output (right motor)
+    GPIOPinConfigure(GPIO_PA6_M1PWM2);
+    GPIOPinTypePWM(GPIO_PORTA_BASE, GPIO_PIN_7); //configuring pin pa7 as pwm output (left motor)
+    GPIOPinConfigure(GPIO_PA7_M1PWM3);
+
+    ui32PWMClock = SysCtlClockGet() / 64; //setting our PWM clock to a variable
+    ui32Load = (ui32PWMClock / PWM_FREQUENCY) - 1; //the count to be loaded to the load register
+    PWMGenConfigure(PWM1_BASE, PWM_GEN_1, PWM_GEN_MODE_DOWN);//configure module 1 PWM generator 0 as down counter
+    PWMGenPeriodSet(PWM1_BASE, PWM_GEN_1, ui32Load); //setting the count value
+
+    PWMOutputState(PWM1_BASE, PWM_OUT_2_BIT, true); //enabling module 1 gen 1 as output and enabling it on out pin 2
+    PWMOutputState(PWM1_BASE, PWM_OUT_3_BIT, true); //enabling module 1 gen 1 as output and enabling it on out pin 3
+    PWMGenEnable(PWM1_BASE, PWM_GEN_1);
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_5);//control for p6 pwm
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, GPIO_PIN_5);
+
+    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_4);//control for p7 pwm
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, GPIO_PIN_4);
+}
+void moveForward(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    ui8Adjust1 = 255;
+    ui8Adjust2 = 255;
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, GPIO_PIN_5);
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 0);
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    UARTPutString(UART_BASE, "\t Moving forward\n\r");
+}
+
+void moveBackward(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    ui8Adjust1 = 255;
+    ui8Adjust2 = 255;
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 0);
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, GPIO_PIN_4);
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    UARTPutString(UART_BASE, "\t Moving forward\n\r");
+}
+
+void stopMoving(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    ui8Adjust1 = 30;
+    ui8Adjust2 = 30;
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    UARTPutString(UART_BASE, "\t Stop Moving\n\r");
+}
+
+void rotateRight(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    ui8Adjust1 = 255;
+    ui8Adjust2 = 255;
+
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, GPIO_PIN_5);//right motor moves backwards
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, GPIO_PIN_4);//left motor moves forwards
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    UARTPutString(UART_BASE, "\t Rotating towards right\n\r");
+}
+
+void rotateLeft(int arg1, int arg2){
+    uint32_t UART_BASE = UART1_BASE;
+
+    ui8Adjust1 = 255;
+    ui8Adjust2 = 255;
+
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 0);//right motor moves forwards
+    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_4, 0);//left motor moves backwards
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+    UARTPutString(UART_BASE, "\t Rotating towards left\n\r");
+}
+
+/*
+ * Milestone 4: Configure_DistanceSensor_Right()
+ */
+void Configure_DistanceSensor_Right(){
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);// Enable the GPIO D peripheral
+    GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_0);// Set Pin0 as input
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);// Enable ADC0
+    ADCSequenceConfigure(ADC0_BASE,1,ADC_TRIGGER_PROCESSOR,0);//IDK what this does tbh
+    ADCSequenceStepConfigure(ADC0_BASE,1,0,ADC_CTL_CH7|ADC_CTL_IE|ADC_CTL_END);
+    ADCSequenceEnable(ADC0_BASE,1);
+
+    ADCIntDisable(ADC0_BASE,1);
+}
+/*
+ * Milestone 4: Configure_DistanceSensor_Front()
+ */
+void Configure_DistanceSensor_Front(){
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);// Enable the GPIO D peripheral
+    GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_1);// Set Pin1 as input
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);// Enable ADC1
+    ADCSequenceConfigure(ADC1_BASE,2,ADC_TRIGGER_PROCESSOR,0);//IDK what this does tbh
+    ADCSequenceStepConfigure(ADC1_BASE,2,0,ADC_CTL_CH7|ADC_CTL_IE|ADC_CTL_END);
+    ADCSequenceEnable(ADC1_BASE,2);
+
+    ADCIntDisable(ADC1_BASE,2);
+}
 void distanceSensorRightRead(int arg1, int arg2){
     uint32_t UART_BASE = UART1_BASE;
     uint32_t ui32ADC0Value[1];
@@ -128,83 +270,6 @@ void distanceSensorFrontRead(int arg1, int arg2){
     sprintf(s,"%u\n\r", ui32ADC1Value[0]);
     UARTPutString(UART_BASE, s);
 
-}
-
-/*
- * Milestone 5: ConfigureMotorRight()
- */
-
-//variables used to program PWM
-#define PWM_FREQUENCY 55
-volatile uint32_t ui32Load;
-volatile uint32_t ui32PWMClock;
-volatile uint8_t ui8Adjust;
-
-void ConfigureMotorRight(){
-    ui8Adjust = 83;
-    SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ); //setting cpu to run at 40MHz
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_64); //setting PWM module clock, clocked by system clock through a divider, inputing 64 runs at 40Mhz/64 (625kHz)
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1); //enabling pwm1 module
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); //enabling I/O for port A
-
-    GPIOPinTypePWM(GPIO_PORTA_BASE, GPIO_PIN_6); //configuring pin pa6 as pwm output
-    GPIOPinConfigure(GPIO_PA6_M1PWM2);
-
-    ui32PWMClock = SysCtlClockGet() / 64; //setting our PWM clock to a variable
-    ui32Load = (ui32PWMClock / PWM_FREQUENCY) - 1; //the count to be loaded to the load register
-    PWMGenConfigure(PWM1_BASE, PWM_GEN_2, PWM_GEN_MODE_DOWN);//configure module 1 PWM generator 0 as down counter
-    PWMGenPeriodSet(PWM1_BASE, PWM_GEN_2, ui32Load); //setting the count value
-
-    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust * ui32Load / 1000); //setting pulse width
-    PWMOutputState(PWM1_BASE, PWM_OUT_2_BIT, true); //enabling module 1 gen 0 as output and enabling it
-    PWMGenEnable(PWM1_BASE, PWM_GEN_2);
-
-    //configure PA5 to control motor direction*******
-    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_5);
-}
-void alternatePWMRightMotor(int arg1, int arg2){
-    ui8Adjust--;
-    if (ui8Adjust < 56){
-        ui8Adjust = 56;
-    }
-    GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_5, 1);
-    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust * ui32Load / 1000);
-}
-
-/*
- * ======= Helper Functions =======
- *
- */
-
-
-/*
- * Milestone 4: Configure_DistanceSensor_Right()
- */
-void Configure_DistanceSensor_Right(){
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);// Enable the GPIO D peripheral
-    GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_0);// Set Pin0 as input
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);// Enable ADC0
-    ADCSequenceConfigure(ADC0_BASE,1,ADC_TRIGGER_PROCESSOR,0);//IDK what this does tbh
-    ADCSequenceStepConfigure(ADC0_BASE,1,0,ADC_CTL_CH7|ADC_CTL_IE|ADC_CTL_END);
-    ADCSequenceEnable(ADC0_BASE,1);
-
-    ADCIntDisable(ADC0_BASE,1);
-}
-/*
- * Milestone 4: Configure_DistanceSensor_Front()
- */
-void Configure_DistanceSensor_Front(){
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);// Enable the GPIO D peripheral
-    GPIOPinTypeGPIOInput(GPIO_PORTD_BASE, GPIO_PIN_1);// Set Pin1 as input
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);// Enable ADC1
-    ADCSequenceConfigure(ADC1_BASE,2,ADC_TRIGGER_PROCESSOR,0);//IDK what this does tbh
-    ADCSequenceStepConfigure(ADC1_BASE,2,0,ADC_CTL_CH7|ADC_CTL_IE|ADC_CTL_END);
-    ADCSequenceEnable(ADC1_BASE,2);
-
-    ADCIntDisable(ADC1_BASE,2);
 }
 /*
  * Milestone 3: Send string to UART
@@ -340,15 +405,21 @@ int main(void)
     configureBluetooth();
     Configure_DistanceSensor_Right();
     Configure_DistanceSensor_Front();
-    ConfigureMotorRight();
+    ConfigureMotorRightAndLeft();
 
-    //Setup Command Interperter 2D Array
+    //Setup Command Interpreter 2D Array
     lookUpTable['t'-'a']['r'-'a'] = toggleRedLED;
     lookUpTable['t'-'a']['g'-'a'] = toggleGreenLED;
     lookUpTable['t'-'a']['b'-'a'] = toggleBlueLED;
     lookUpTable['d'-'a']['r'-'a'] = distanceSensorRightRead;
     lookUpTable['d'-'a']['f'-'a'] = distanceSensorFrontRead;
-    lookUpTable['g'-'a']['o'-'a'] = alternatePWMRightMotor;
+    lookUpTable['g'-'a']['o'-'a'] = moveForward; // go = forward
+    lookUpTable['r'-'a']['e'-'a'] = moveBackward;//re = reverse
+    lookUpTable['s'-'a']['t'-'a'] = stopMoving;//st = stop
+    lookUpTable['r'-'a']['r'-'a'] = rotateRight;//rr = rotate right
+    lookUpTable['r'-'a']['l'-'a'] = rotateLeft;//rl = rotate left
+
+
 
     /* Start BIOS */
     BIOS_start();
