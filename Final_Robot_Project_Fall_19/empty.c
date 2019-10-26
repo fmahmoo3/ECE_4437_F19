@@ -257,6 +257,94 @@ void increaseSpeed(int arg1, int arg2){
 
 }
 
+
+/*
+ * Milestone 6: Right_PIDcontrols()
+ */
+void right_PIDcontrols(int arg1, int arg2){
+    int pid_error;
+    double kp = .25;
+    double ki = .25;
+    double kd = 0;
+
+    double p = 0;
+    double i = 0;
+    double d = 0;
+
+    uint32_t middle = 2545; // constant value representing distance from right when in desired middle of corridor
+    uint32_t rIRs;
+    int last_error = 0;
+    double pwm_pid;
+
+    uint32_t UART_BASE = UART1_BASE;
+    uint32_t ui32ADC0Value[1];
+
+    while(1){
+        Task_sleep(50);// simulating a 50ms wait time
+
+        ADCIntClear(ADC0_BASE, 1);
+        ADCProcessorTrigger(ADC0_BASE, 1);
+
+        while(!ADCIntStatus(ADC0_BASE, 1, false)){
+            //wait
+        }
+
+        ADCSequenceDataGet(ADC0_BASE, 1, ui32ADC0Value);
+        rIRs=ui32ADC0Value[0];
+
+        pid_error = middle-rIRs;
+
+        p = (kp*pid_error);
+        i = ki*(pid_error+last_error);
+        d = kd*(pid_error-last_error);
+
+        last_error = pid_error;
+        pwm_pid = p+i+d;
+
+        if(pid_error<=500 && pid_error>=70){
+            //no error, keep moving forward
+
+            ui8Adjust2 -= pwm_pid;
+            ui8Adjust1 = 255;
+
+            UARTPutString(UART_BASE," keep moving forward\n\r " );
+        }
+        else if(pid_error < 70){
+            // Too close to the wall, needs to move left
+            // steer to left: slow down left motor and set right motor to 255 adjust
+
+            ui8Adjust2 -= pwm_pid;
+            ui8Adjust1 = 255;
+
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+
+
+            // no need to set directions because will be moving forward already :)
+            UARTPutString(UART_BASE," too close from wall \n\r" );
+        }
+        else{
+            // Too far from the wall, needs to move right
+            // steer to right: slow down right motor and set left motor to 255 adjust
+
+            ui8Adjust1 -= pwm_pid;
+            ui8Adjust2 = 255;
+
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_2, ui8Adjust1 * ui32Load / 1000);
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_3, ui8Adjust2 * ui32Load / 1000);
+
+
+
+            // no need to set directions because will be moving forward already :)
+            UARTPutString(UART_BASE," too far from wall \n\r" );
+        }
+    }
+
+}
+
+
+
 /*
  * Milestone 4: Configure_DistanceSensor_Right()
  */
@@ -472,6 +560,7 @@ int main(void)
     lookUpTable['r'-'a']['l'-'a'] = rotateLeft;//rl = rotate left
     lookUpTable['i'-'a']['s'-'a'] = increaseSpeed;//is = increase Speed
     lookUpTable['d'-'a']['s'-'a'] = decreaseSpeed;//rl = decrease Speed
+    lookUpTable['r'-'a']['p'-'a'] =  right_PIDcontrols;// PID CONTROL
 
 
     /* Start BIOS */
