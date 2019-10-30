@@ -278,6 +278,7 @@ void right_PIDcontrols(int arg1, int arg2){
 
     uint32_t UART_BASE = UART1_BASE;
     uint32_t ui32ADC0Value[1];
+    uint32_t ui32ADC1Value[1];
 
     while(1){
         Task_sleep(50);// simulating a 50ms wait time
@@ -307,7 +308,7 @@ void right_PIDcontrols(int arg1, int arg2){
             ui8Adjust2 -= pwm_pid;
             ui8Adjust1 = 255;
 
-            UARTPutString(UART_BASE," keep moving forward\n\r " );
+            UARTPutString(UART_BASE," Keep moving forward\n\r " );
         }
         else if(pid_error < 70){
             // Too close to the wall, needs to move left
@@ -322,7 +323,7 @@ void right_PIDcontrols(int arg1, int arg2){
 
 
             // no need to set directions because will be moving forward already :)
-            UARTPutString(UART_BASE," too close from wall \n\r" );
+            UARTPutString(UART_BASE," Too close from wall \n\r" );
         }
         else{
             // Too far from the wall, needs to move right
@@ -337,7 +338,26 @@ void right_PIDcontrols(int arg1, int arg2){
 
 
             // no need to set directions because will be moving forward already :)
-            UARTPutString(UART_BASE," too far from wall \n\r" );
+            UARTPutString(UART_BASE," Too far from wall \n\r" );
+        }
+
+
+        ADCIntClear(ADC1_BASE, 2);
+        ADCProcessorTrigger(ADC1_BASE, 2);
+
+        while(!ADCIntStatus(ADC1_BASE, 2, false)){
+            //wait
+        }
+
+        ADCSequenceDataGet(ADC1_BASE, 2, ui32ADC1Value);
+
+        if(ui32ADC1Value[0] >3900){
+            stopMoving(0,0);
+            UARTPutString(UART_BASE," Something in front \n\r" );
+            rotateRight(0,0);
+            Task_sleep(1000);
+            stopMoving(0,0);
+            moveForward(0,0);
         }
     }
 
@@ -368,7 +388,7 @@ void Configure_DistanceSensor_Front(){
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);// Enable ADC1
     ADCSequenceConfigure(ADC1_BASE,2,ADC_TRIGGER_PROCESSOR,0);//IDK what this does tbh
-    ADCSequenceStepConfigure(ADC1_BASE,2,0,ADC_CTL_CH7|ADC_CTL_IE|ADC_CTL_END);
+    ADCSequenceStepConfigure(ADC1_BASE,2,0,ADC_CTL_CH6|ADC_CTL_IE|ADC_CTL_END);
     ADCSequenceEnable(ADC1_BASE,2);
 
     ADCIntDisable(ADC1_BASE,2);
